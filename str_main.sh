@@ -96,6 +96,9 @@ deploy_streamrnode() {
 				send "$websocket_port\r"
 				expect "Provide a port for the mqtt Plugin" {send "$mqtt_port\r"}
 				expect "Provide a port for the publishHttp Plugin" {send "$publishHttp_port\r"}
+				expect "Do you want to participate in mining and staking?"
+				send "y"
+				send "\r"
 				expect "Select a path to store the generated config in" {send "$config_addr\r"}
 				expect "streamr-broker"
 				interact
@@ -148,6 +151,9 @@ recovery_streamrnode() {
 				send "$websocket_port\r"
 				expect "Provide a port for the mqtt Plugin" {send "$mqtt_port\r"}
 				expect "Provide a port for the publishHttp Plugin" {send "$publishHttp_port\r"}
+				expect "Do you want to participate in mining and staking?"
+				send "y"
+				send "\r"
 				expect "Select a path to store the generated config in" {send "$config_addr\r"}
 				expect "streamr-broker"
 				interact
