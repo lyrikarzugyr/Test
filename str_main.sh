@@ -179,7 +179,7 @@ check_privatekey() {
 		read -p "请输入要查询的节点数量: " node_count
 		for ((i=1; i<=node_count; i ++))
 		do
-				address=$(cat $HOME/.streamrDocker_${i}/broker-config.json | grep ethereumPrivateKey)
+				address=$(cat $HOME/.streamrDocker_${i}/broker-config.json | grep privateKey)
 				echo $address
 		done
 
