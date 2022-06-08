@@ -1,4 +1,14 @@
 #!/bin/bash
+
+
+exists()
+{
+  command -v "$1" >/dev/null 2>&1
+}
+
+
+
+
 if [ ! $NODE_NAME ]; then
 	read -p "Enter node name: " NODE_NAME
 	echo 'export SUBSPACE_NODENAME='${NODE_NAME} >> $HOME/.bash_profile
