@@ -5,7 +5,7 @@ do
 		echo 执行第$i次
 		expect << EOF
 		set timeout 420
-		spawn /root/ironfish/ironfish-cli/bin/ironfish deposit --confirm
+		spawn /root/ironfish/ironfish-cli/bin/ironfish deposit  -f 1000 --confirm
 #		expect "Do you confirm"
 #		send "Y"
 #		send "\r"
