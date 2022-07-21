@@ -179,8 +179,11 @@ EOF
 sudo systemctl daemon-reload 
 sudo systemctl enable masad 
 sudo systemctl restart masad 
-sed -i.bak -e "s/.*SystemMaxUse=.*/SystemMaxUse=1000M/" /etc/systemd/journald.conf
-sed -i.bak -e "s/.*ForwardToSyslog=.*/ForwardToSyslog=no/" /etc/systemd/journald.conf
+echo "[Journal]" > /etc/systemd/journald.conf
+echo "Storage=persistent" >> /etc/systemd/journald.conf
+echo "SystemMaxUse=1000M" >> /etc/systemd/journald.conf
+echo "ForwardToSyslog=no" >> /etc/systemd/journald.conf
+chmod 644 /etc/systemd/journald.conf
 systemctl restart systemd-journald.service
 }
 
