@@ -15,7 +15,10 @@ fi
 fi
 fi
 fi
+cpulimitflag=$(ps -ef | awk '{if($8=="cpulimit" && $10=="npool" && $12=="5") print$1}')
+if [[ $cpulimitflag != root ]];then
 if [ `echo "$cpufuzai>=0.35" |bc` -eq 1 ];then
 kill -9 $(ps -ef | awk '{if($8=="cpulimit" && $10=="npool" && $12=="15") print$2}')
 echo -e "\n" | nohup cpulimit --exe npool --limit 10 >/dev/null 2>&1 &
+fi
 fi
