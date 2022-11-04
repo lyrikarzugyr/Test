@@ -64,7 +64,7 @@ def chaxun_size(token):
 		print(size)
 		
 #单独查询主机IP
-def chaxun_droplets(token):
+def chaxun_ip(token):
 	manager = digitalocean.Manager(token=token)
 	my_droplets = manager.get_all_droplets()
 	i=1
