@@ -55,19 +55,27 @@ def chaxun_region(token):
 	regions = manager.get_all_regions()
 	for region in regions:
 		print(region)
-		
+
 #查看可选镜像
 def chaxun_size(token):	
 	manager = digitalocean.Manager(token=token)
 	sizes = manager.get_all_sizes()
 	for size in sizes:
 		print(size)
-
+		
+#单独查询主机IP
+def chaxun_droplets(token):
+	manager = digitalocean.Manager(token=token)
+	my_droplets = manager.get_all_droplets()
+	i=1
+	for droplet in my_droplets:
+		print(str(droplet.ip_address))
+		i=i+1
 
 if __name__ == '__main__':
 
 	while True:
-		flag = input("请输入要执行的程序:（1：查询账号信息，2：查询主机信息，3：删除全部主机，4：创建主机，5：查看可选地区，6：查看可选镜像） ") or "0"
+		flag = input("请输入要执行的程序:（1：查询账号信息，2：查询主机信息，3：删除全部主机，4：创建主机，5：查看可选地区，6：查看可选镜像，7：单独查询主机IP） ") or "0"
 		if (flag=="0"):
 			break
 		if (flag=="1"):
@@ -86,3 +94,5 @@ if __name__ == '__main__':
 			chaxun_region(token)
 		if (flag=="6"):
 			chaxun_size(token)
+		if (flag=="7"):
+			chaxun_ip(token)
