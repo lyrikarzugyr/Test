@@ -31,6 +31,7 @@ cd /root/linux-amd64
 systemctl stop npool.service
 rm -rf ChainDB
 wget -O - https://download.npool.io/ChainDB.tar.gz  | tar -xzf -
+sleep 259200
 systemctl restart npool.service
 cd ~
 
