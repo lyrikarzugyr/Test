@@ -9,7 +9,7 @@ exists()
 read -p "请输入npool的key: " NPOOL_KEY
 
 #关闭自动更新
-sudo apt remove unattended-upgrades
+sudo apt remove unattended-upgrades -y
 
 #关闭日志
 echo "[Journal]" > /etc/systemd/journald.conf
