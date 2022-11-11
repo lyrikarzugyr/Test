@@ -78,8 +78,8 @@ def shanchuzhiding_droplet(token,index):
 	my_droplets = manager.get_all_droplets()
 	i=1
 	for droplet in my_droplets:
-		if(i==index):
-			print("正在删除第【" + str(i) + "】台----" + str(droplet) + "----" + str(droplet.ip_address))
+		if(index==str(droplet).split("-")[-1].split(">")[0]):
+			print("正在删除第【" + str(droplet).split("-")[-1].split(">")[0] + "】台----" + str(droplet) + "----" + str(droplet.ip_address))
 			droplet.destroy()
 		i=i+1
 	print("删除主机完成")
