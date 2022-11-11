@@ -72,10 +72,23 @@ def chaxun_ip(token):
 		print(str(droplet.ip_address))
 		i=i+1
 
+#删除指定主机
+def shanchuzhiding_droplet(token,index):
+	manager = digitalocean.Manager(token=token)
+	my_droplets = manager.get_all_droplets()
+	i=1
+	for droplet in my_droplets:
+		if(i==index):
+			print("正在删除第【" + str(i) + "】台----" + str(droplet) + "----" + str(droplet.ip_address))
+			droplet.destroy()
+		i=i+1
+	print("删除主机完成")
+
+
 if __name__ == '__main__':
 
 	while True:
-		flag = input("请输入要执行的程序:（1：查询账号信息，2：查询主机信息，3：删除全部主机，4：创建主机，5：查看可选地区，6：查看可选镜像，7：单独查询主机IP） ") or "0"
+		flag = input("请输入要执行的程序:（1：查询账号信息，2：查询主机信息，3：删除全部主机，4：创建主机，5：查看可选地区，6：查看可选镜像，7：单独查询主机IP，8：删除指定主机） ") or "0"
 		if (flag=="0"):
 			break
 		if (flag=="1"):
@@ -96,3 +109,6 @@ if __name__ == '__main__':
 			chaxun_size(token)
 		if (flag=="7"):
 			chaxun_ip(token)
+		if (flag=="8"):
+			index = input("请输入要删除的主机序号:") or "100000"
+			shanchuzhiding_droplet(token,index)
