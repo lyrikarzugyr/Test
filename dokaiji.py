@@ -16,7 +16,7 @@ def chaxun_droplets(token):
 	my_droplets = manager.get_all_droplets()
 	i=1
 	for droplet in my_droplets:
-		print("第【" + str(i) + "】台----" + str(droplet) + "----" + str(droplet.ip_address))
+		print("第【" + str(droplet).split("-")[-1].split(">")[0] + "】台----" + str(droplet) + "----" + str(droplet.ip_address))
 		i=i+1
 
 #删除主机
@@ -67,21 +67,17 @@ def chaxun_size(token):
 def chaxun_ip(token):
 	manager = digitalocean.Manager(token=token)
 	my_droplets = manager.get_all_droplets()
-	i=1
 	for droplet in my_droplets:
 		print(str(droplet.ip_address))
-		i=i+1
 
 #删除指定主机
 def shanchuzhiding_droplet(token,index):
 	manager = digitalocean.Manager(token=token)
 	my_droplets = manager.get_all_droplets()
-	i=1
 	for droplet in my_droplets:
 		if(index==str(droplet).split("-")[-1].split(">")[0]):
 			print("正在删除第【" + str(droplet).split("-")[-1].split(">")[0] + "】台----" + str(droplet) + "----" + str(droplet.ip_address))
 			droplet.destroy()
-		i=i+1
 	print("删除主机完成")
 
 
