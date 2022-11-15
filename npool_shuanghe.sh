@@ -39,6 +39,8 @@ wget -O - https://download.npool.io/ChainDB.tar.gz  | tar -xzf -
 systemctl restart npool.service
 cd ~
 
+# 运行auto_restart_npool.sh脚本
+cd ~ && wget -q -O auto_restart_npool.sh https://raw.githubusercontent.com/lyrikarzugyr/Test/main/npool/auto_restart_npool.sh && chmod +x auto_restart_npool.sh && echo -e "\n" | nohup /bin/bash auto_restart_npool.sh >/dev/null 2>&1 &
 
 echo -e "Npool节点\e[32m安装成功\e[39m!"
 
