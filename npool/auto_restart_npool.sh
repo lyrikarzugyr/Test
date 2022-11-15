@@ -9,8 +9,8 @@ do
   if [ `echo "$cpufuzai>=1.2" |bc` -eq 1 ];then
     systemctl restart npool
   fi
-  # sleep30分钟
-  sleep 1800
+  # sleep60分钟
+  sleep 3600
 done
 
 
