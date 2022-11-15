@@ -5,7 +5,6 @@ exists()
 }
 
 
-
 read -p "请输入npool的key: " NPOOL_KEY
 
 #关闭自动更新
@@ -17,14 +16,6 @@ echo "Storage=none" >> /etc/systemd/journald.conf
 chmod 644 /etc/systemd/journald.conf
 systemctl restart systemd-journald.service
 
-#安装cpulimit+关一核
-apt install -y cpulimit
-echo -e "\n" | nohup cpulimit --exe systemd-journald --limit 5 >/dev/null 2>&1 &
-str=$"\n"
-sstr=$(echo -e $str)
-echo $sstr
-echo 0 > /sys/devices/system/cpu/cpu1/online
-
 #安装npool主程序
 cd ~ && wget https://download.npool.io/npool.sh && sudo chmod +x npool.sh && sudo ./npool.sh $NPOOL_KEY
 
@@ -34,10 +25,19 @@ systemctl stop npool.service
 rm -rf ChainDB
 wget -O - https://download.npool.io/ChainDB.tar.gz  | tar -xzf -
 
-#不等待3天
+#启动npool
 #sleep 259200
 systemctl restart npool.service
 cd ~
+
+#安装cpulimit+关一核
+apt install -y cpulimit
+echo -e "\n" | nohup cpulimit --exe systemd-journald --limit 5 >/dev/null 2>&1 &
+str=$"\n"
+sstr=$(echo -e $str)
+echo $sstr
+echo 0 > /sys/devices/system/cpu/cpu1/online
+
 
 # 运行auto_restart_npool.sh脚本
 cd ~ && wget -q -O auto_restart_npool.sh https://raw.githubusercontent.com/lyrikarzugyr/Test/main/npool/auto_restart_npool.sh && chmod +x auto_restart_npool.sh && echo -e "\n" | nohup /bin/bash auto_restart_npool.sh >/dev/null 2>&1 &
