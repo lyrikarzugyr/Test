@@ -36,7 +36,7 @@ deploy_exordenode() {
 		do
 				echo "-----------------------------------------------------"
 				echo "开始部署exorde节点: "
-				docker run -d  --name exorde --restart unless-stopped --pull always --name exorde-cli rg.fr-par.scw.cloud/exorde-labs/exorde-cli_${i} -m ${EXORDE_WALLET} -l 2
+				docker run -d --restart unless-stopped --pull always --name exorde-cli rg.fr-par.scw.cloud/exorde-labs/exorde-cli_${i} -m ${EXORDE_WALLET} -l 2
 				echo "-----------------------------------------------------"
 				str1="exorde节点exorde-cli_"
 				str2=${i}
