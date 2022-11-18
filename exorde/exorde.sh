@@ -1,6 +1,7 @@
 #!/bin/bash
 
 function setupVars {
+	. $HOME/.bash_profile
 	if [ ! $EXORDE_WALLET ]; then
 		read -p "输入收益钱包地址: " EXORDE_WALLET
 		echo 'export EXORDE_WALLET='${EXORDE_WALLET} >> $HOME/.bash_profile
