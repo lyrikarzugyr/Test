@@ -50,7 +50,7 @@ deploy_exordenode() {
 }
 
 check_exordenode_status() {
-        node_count=`docker ps --filter="exorde-cli_" | wc -l`
+        node_count=`docker ps --filter="name=exorde-cli_" | wc -l`
         if [ ${node_count} = "0" ]; then
                 echo "-----------------------------------------------------"
             echo "尚未部署exorde节点,请部署后再执行此操作!"
@@ -58,7 +58,7 @@ check_exordenode_status() {
         else
                 echo "-----------------------------------------------------"
                 echo "当前exorde节点运行状态如下: "
-                docker ps --filter="exorde-cli_"
+                docker ps --filter="name=exorde-cli_"
         fi
 }
 
