@@ -2,8 +2,6 @@
 
 node_count=`docker ps --filter="name=exorde-cli_" | wc -l`
 if [ ${node_count} = "0" ]; then
-	#echo "无节点"
-else
 	for ((i=1; i<=node_count - 1; i ++))
 	do
 	diyihang=$(docker logs exorde-cli_${i} --tail 4 | sed -n '1p')
