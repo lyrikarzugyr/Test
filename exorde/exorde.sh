@@ -38,6 +38,9 @@ deploy_exordenode() {
 				echo "-----------------------------------------------------"
 				echo "开始部署exorde节点: "
 				docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+				if [ i!=installed_node_count-1 ]; then
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+				fi
 				echo "-----------------------------------------------------"
 				str1="exorde节点exorde-cli_"
 				str2=${i}
@@ -179,6 +182,10 @@ update_exordenode() {
 				echo "-----------------------------------------------------"
 				echo "开始部署exorde节点: "
 				docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+				installed_node_count=`docker ps --filter="name=exorde-cli_" | wc -l`
+				if [ i!=installed_node_count-1 ]; then
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+				fi
 				echo "-----------------------------------------------------"
 				str1="exorde节点exorde-cli_"
 				str2=${i}
