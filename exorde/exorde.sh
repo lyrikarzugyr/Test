@@ -99,7 +99,7 @@ check_logs_all() {
                         str3="日志: "
                         echo ${str1}${str2}${str3}
                 docker logs --tail ${col_number} exorde-cli_${i} 
-                sleep 2
+                sleep 1
                 done
         fi
 }
