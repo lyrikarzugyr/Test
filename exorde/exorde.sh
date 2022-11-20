@@ -37,9 +37,12 @@ deploy_exordenode() {
 		do
 				echo "-----------------------------------------------------"
 				echo "开始部署exorde节点: "
-				docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
-				installed_node_count=`docker ps --filter="name=exorde-cli_" | wc -l`
-				if [ i!=installed_node_count-1 ]; then
+				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
+				if [ installed_node_count==1 ]; then
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+				fi
+				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
+				if [ installed_node_count==1 ]; then
 					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				echo "-----------------------------------------------------"
@@ -182,9 +185,12 @@ update_exordenode() {
 		do
 				echo "-----------------------------------------------------"
 				echo "开始部署exorde节点: "
-				docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
-				installed_node_count=`docker ps --filter="name=exorde-cli_" | wc -l`
-				if [ i!=installed_node_count-1 ]; then
+				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
+				if [ installed_node_count==1 ]; then
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+				fi
+				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
+				if [ installed_node_count==1 ]; then
 					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				echo "-----------------------------------------------------"
