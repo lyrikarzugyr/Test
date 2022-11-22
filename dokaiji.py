@@ -80,11 +80,21 @@ def shanchuzhiding_droplet(token,index):
 			droplet.destroy()
 	print("删除主机完成")
 
+#重启指定主机
+def reboot_droplet(token,ip_address):
+	manager = digitalocean.Manager(token=token)
+	my_droplets = manager.get_all_droplets()
+	for droplet in my_droplets:
+		if(ip_address==str(droplet.ip_address)):
+			print("正在重启第【" + str(droplet).split("-")[-1].split(">")[0] + "】台----" + str(droplet) + "----" + str(droplet.ip_address))
+			droplet.reboot()
+	print("重启主机完成")
+	
 
 if __name__ == '__main__':
 
 	while True:
-		flag = input("请输入要执行的程序:（1：查询账号信息，2：查询主机信息，3：删除全部主机，4：创建主机，5：查看可选地区，6：查看可选镜像，7：单独查询主机IP，8：删除指定主机） ") or "0"
+		flag = input("请输入要执行的程序:（1：查询账号信息，2：查询主机信息，3：删除全部主机，4：创建主机，5：查看可选地区，6：查看可选镜像，7：单独查询主机IP，9：重启指定主机，9：删除指定主机） ") or "0"
 		if (flag=="0"):
 			break
 		if (flag=="1"):
@@ -108,3 +118,6 @@ if __name__ == '__main__':
 		if (flag=="8"):
 			index = input("请输入要删除的主机序号:") or "100000"
 			shanchuzhiding_droplet(token,index)
+		if (flag=="9"):
+			ip_address = input("请输入要重启的主机IP:") or "100000"
+			restart_droplet(token,ip_address)
