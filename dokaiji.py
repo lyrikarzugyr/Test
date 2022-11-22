@@ -120,4 +120,4 @@ if __name__ == '__main__':
 			shanchuzhiding_droplet(token,index)
 		if (flag=="9"):
 			ip_address = input("请输入要重启的主机IP:") or "100000"
-			restart_droplet(token,ip_address)
+			reboot_droplet(token,ip_address)
