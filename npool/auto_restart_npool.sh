@@ -6,7 +6,7 @@ do
   cpufuzai=$(uptime | awk '{print $NF}')
 
   # 如果负载>=1.2则重启npool
-  if [ `echo "$cpufuzai>=1.2" |bc` -eq 1 ];then
+  if [ `echo "$cpufuzai>=1.1" |bc` -eq 1 ];then
     systemctl restart npool
   fi
   # sleep60分钟
