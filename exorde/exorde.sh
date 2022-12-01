@@ -39,11 +39,11 @@ deploy_exordenode() {
 				echo "开始部署exorde节点: "
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				echo "-----------------------------------------------------"
 				str1="exorde节点exorde-cli_"
@@ -187,11 +187,11 @@ update_exordenode() {
 				echo "开始部署exorde节点: "
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} rg.fr-par.scw.cloud/exorde-labs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				echo "-----------------------------------------------------"
 				str1="exorde节点exorde-cli_"
