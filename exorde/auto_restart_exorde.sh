@@ -6,10 +6,8 @@ if [ ${node_count} != "0" ]; then
 	do
 	diyihang=$(docker logs exorde-cli_${i} --tail 4 | sed -n '1p')
 	disanhang=$(docker logs exorde-cli_${i} --tail 4 | sed -n '3p')
-	if [[ $diyihang == "[UPDATE SYSTEM] Checking new updates..." ]];then
-	if [[ $disanhang == "[UPDATE SYSTEM] Checking new updates..." ]];then
+	if [[ $disanhang == "Latest message from Exorde Labs:  IF YOUR REP IS STILL ZERO, PLEASE RESTART THIS WORKER TO TRANSFER REP TO YOUR MAIN ADDRESS. IT WILL WORK. WE ARE NOW MORE RESILIENT WITH DDOS ATTACKS." ]];then
 	docker restart exorde-cli_${i}
-	fi
 	fi
 	sleep 1
 	done
