@@ -121,21 +121,25 @@ delete_exordenode_all() {
                 node_count2=`docker ps --filter="name=exorde-cli_" | wc -l`
                 read -p "是否确认彻底删除全部exorde节点(输入Y开始删除，输入N取消删除): " delete_node
                 if [ ${delete_node} = "Y" -o ${delete_node} = "y" ]; then
-                        for ((i=1; i<=node_count2 - 1; i ++))
+			for ((i=1; i<=node_count2 - 1; i ++))
                         do
-                                echo "-----------------------------------------------------"
-                    str1="开始删除exorde节点exorde-cli_"
-                    str2=${i}
-                    str3="： "
-                    echo ${str1}${str2}${str3}
-                    docker stop exorde-cli_${i}
-                    docker rm exorde-cli_${i}
-                    str4="exorde节点exorde-cli_"
-                    str5=${i}
-                    str6="已成功删除!"
-                    echo ${str4}${str5}${str6}
-                    sleep 2
-                done 
+				echo "-----------------------------------------------------"
+				str1="开始删除exorde节点exorde-cli_"
+				str2=${i}
+				str3="： "
+				echo ${str1}${str2}${str3}
+				docker stop exorde-cli_${i}
+				docker rm exorde-cli_${i}
+				str4="exorde节点exorde-cli_"
+				str5=${i}
+				str6="已成功删除!"
+				echo ${str4}${str5}${str6}
+				sleep 1
+                	done 
+			echo "-----------------------------------------------------"
+			echo "开始删除漏网之鱼"
+			docker stop $(docker ps -q) & docker rm $(docker ps -aq)
+			echo "成功删除漏网之鱼"
                 echo "已彻底删除通过此脚本部署的全部exorde节点!"
                 docker ps
             else all
