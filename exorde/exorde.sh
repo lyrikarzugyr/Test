@@ -138,8 +138,9 @@ delete_exordenode_all() {
                 	done 
 			echo "-----------------------------------------------------"
 			echo "开始删除漏网之鱼"
-			docker stop $(docker ps -q) & docker rm $(docker ps -aq)
-			echo "成功删除漏网之鱼"
+			docker stop $(docker ps -q)
+			docker rm $(docker ps -aq)
+			echo "已成功删除漏网之鱼"
                 echo "已彻底删除通过此脚本部署的全部exorde节点!"
                 docker ps
             else all
@@ -176,6 +177,10 @@ update_exordenode() {
                     echo ${str4}${str5}${str6}
                     sleep 2
                 done 
+		echo "开始删除漏网之鱼"
+		docker stop $(docker ps -q)
+		docker rm $(docker ps -aq)
+		echo "已成功删除漏网之鱼"
                 echo "已彻底删除通过此脚本部署的全部exorde节点!"
                 docker ps
             else all
