@@ -15,10 +15,10 @@ if [ `echo "$cpufuzai>=3" |bc` -eq 1 ];then
     for ((i=1; i<=node_count2 - 1; i ++))
       do
         echo "-----------------------------------------------------"
-#         str1="开始删除exorde节点exorde-cli_"
+        str1="开始删除exorde节点exorde-cli_"
         str2=${i}
         str3="： "
-        echo ${str1}${str2}${str3}
+#         echo ${str1}${str2}${str3}
         docker stop exorde-cli_${i}
         docker rm exorde-cli_${i}
         str4="exorde节点exorde-cli_"
