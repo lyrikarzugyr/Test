@@ -1,6 +1,6 @@
 #!/bin/bash
 cpufuzai=$(uptime | awk '{print $12}')
-if [ `echo "$cpufuzai>=1.5" |bc` -eq 1 ];then
+if [ `echo "$cpufuzai>=1.2" |bc` -eq 1 ];then
   echo "cpu负载超过1.5，自动删除节点中!"
   node_count1=`docker ps -a --filter="name=exorde-cli_" | wc -l`
   if [ ${node_count1} = "0" ]; then
