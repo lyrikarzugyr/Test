@@ -36,7 +36,7 @@ echo -e "\n" | nohup cpulimit --exe systemd-journald --limit 5 >/dev/null 2>&1 &
 str=$"\n"
 sstr=$(echo -e $str)
 echo $sstr
-echo 0 > /sys/devices/system/cpu/cpu1/online
+# echo 0 > /sys/devices/system/cpu/cpu1/online
 
 
 # 运行auto_restart_npool.sh脚本
