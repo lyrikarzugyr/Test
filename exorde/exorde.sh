@@ -32,6 +32,7 @@ install_docker(){
 deploy_exordenode() {
 		setupVars
 		read -p "请输入要部署的节点数量: " node_count
+		read -p "请输入cpu限制(输入0.1表示限制10%): " cpu_limit
 		install_docker
 		for ((i=1; i<=node_count; i ++))
 		do
@@ -39,11 +40,11 @@ deploy_exordenode() {
 				echo "开始部署exorde节点: "
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --cpus ${cpu_limit} --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --cpus ${cpu_limit} --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				echo "-----------------------------------------------------"
 				str1="exorde节点exorde-cli_"
@@ -149,6 +150,7 @@ delete_exordenode_all() {
 
 update_exordenode() {
 		read -p "请输入要更新的节点数量: " node_count
+		read -p "请输入cpu限制(输入0.1表示限制10%): " cpu_limit
         node_count1=`docker ps -a --filter="name=exorde-cli_" | wc -l`
         if [ ${node_count1} = "0" ]; then
                 echo "-----------------------------------------------------"
@@ -194,11 +196,11 @@ update_exordenode() {
 				echo "开始部署exorde节点: "
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --cpus ${cpu_limit} --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				installed_node_flag=`docker ps --filter="name=^/exorde-cli_${i}$" | wc -l`
 				if [ $installed_node_flag == 1 ]; then
-					docker run -d --restart unless-stopped --pull always --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
+					docker run -d --restart unless-stopped --pull always --cpus ${cpu_limit} --name exorde-cli_${i} exordelabs/exorde-cli -m ${EXORDE_WALLET} -l 2
 				fi
 				echo "-----------------------------------------------------"
 				str1="exorde节点exorde-cli_"
