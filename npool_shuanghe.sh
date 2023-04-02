@@ -17,13 +17,14 @@ chmod 644 /etc/systemd/journald.conf
 systemctl restart systemd-journald.service
 
 #安装npool主程序
-cd ~ && wget https://download.npool.io/npool.sh && sudo chmod +x npool.sh && sudo ./npool.sh $NPOOL_KEY
+cd ~ && wget -c https://download.npool.io/npool.sh -O npool.sh&& sudo chmod +x npool.sh && sudo ./npool.sh $NPOOL_KEY
 
 #安装npool数据库
 cd /root/linux-amd64
 systemctl stop npool.service
 rm -rf ChainDB
-wget -O - https://download.npool.io/ChainDB.tar.gz  | tar -xzf -
+wget -c -O - https://down.npool.io/ChainDB.tar.gz  | tar -xzf -
+
 
 #启动npool
 #sleep 259200
