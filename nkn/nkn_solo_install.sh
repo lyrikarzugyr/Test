@@ -19,7 +19,7 @@ echo "==========================================================================
 echo "Installing NKN Commercial..."
 echo "============================================================================================="
 wget --quiet --continue --show-progress https://commercial.nkn.org/downloads/nkn-commercial/linux-amd64.zip > /dev/null 2>&1
-unzip -qq linux-amd64.zip
+unzip -qq -o linux-amd64.zip
 cd linux-amd64
 cat >/root/linux-amd64/config.json <<EOF
 {
