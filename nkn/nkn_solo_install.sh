@@ -1,9 +1,10 @@
 #!/bin/bash
 
-BENEFIT_ADDRESS = input("请输入收益地址（回车使用默认）:") or "NKNZHPhHmxCJfmGQMwthgsLwXqc1vMrd6sHZ"
-NODE_WALLET = input("请输入节点钱包:")
-# read -p "请输入收益地址: " BENEFIT_ADDRESS
-# read -p "节点钱包: " NODE_WALLET
+read -p "请输入收益地址(回车使用默认): " BENEFIT_ADDRESS
+if [ -z "${BENEFIT_ADDRESS}" ];then
+	BENEFIT_ADDRESS="NKNZHPhHmxCJfmGQMwthgsLwXqc1vMrd6sHZ"
+fi
+read -p "节点钱包: " NODE_WALLET
 
 echo "============================================================================================="
 echo "Hardening your OS..."
