@@ -12,6 +12,13 @@ echo "==========================================================================
 export DEBIAN_FRONTEND=noninteractive
 apt-get -qq update
 apt-get -qq upgrade -y
+#关闭自动更新
+sudo apt remove unattended-upgrades -y
+#关闭日志
+echo "[Journal]" > /etc/systemd/journald.conf
+echo "Storage=none" >> /etc/systemd/journald.conf
+chmod 644 /etc/systemd/journald.conf
+systemctl restart systemd-journald.service
 echo "============================================================================================="
 echo "Installing necessary libraries..."
 echo "============================================================================================="
@@ -45,4 +52,12 @@ echo -n $NODE_WALLET > /root/linux-amd64/services/nkn-node/wallet.json
 echo "123456" > /root/linux-amd64/services/nkn-node/wallet.pswd
 sleep 10
 systemctl restart nkn-commercial
+#安装cpulimit
+sudo apt update
+apt install -y cpulimit
+echo -e "\n" | nohup cpulimit --exe systemd-journald --limit 5 >/dev/null 2>&1 &
+str=$"\n"
+sstr=$(echo -e $str)
+echo $sstr
+
 echo "============================================================================================="
